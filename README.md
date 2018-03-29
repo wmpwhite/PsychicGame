@@ -1,1 +1,4 @@
 # PsychicGame
+
+Struggled with the javascript primarily because of a lack of understanding about some of the behaviors of the language.  For instance, I had put my document.onkeyup
+event inside two nested for loops and this created major problems.  I had assumed that the flow of javascript would stop and wait at the document.onkeyup event but it did not.  It blew through both loops without ever taking a user input from the keybord.  Mark spent some time this morning helping me debug what I had and it was very helpful in cleaning up some errors, but sitting with John this afternoon for a while was particularly illuminating.  He helped a great deal with the code, but explained much about javascript that I had not grasped as he did so. 

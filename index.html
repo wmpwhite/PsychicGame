@@ -4,20 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- links reset and style css files -->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <title>Psychic Game</title>
 </head>
 <body>
 
-    <div id="game">
+    <!-- plays audio file -->
+    <audio src="assets/images/Twilight-zone-song.mp3" autoplay loop></audio>
 
-        <h2>Pick your first <span id="userGuess">letter</span></h2>
+    <div class="container">    
+        <!-- two header elements -->
+        <h1>Play the Psychic Game!</h1>
+        <br>
+        <br>
+        <h2>I am thinking of a letter. See if you can guess it. Pick a letter!</h2>
+        <br>
+        <br>
+        <hr>
+    
+        <!-- an id-designated element to accept/display html from javascript file -->
+        <div id="game">
+
+             <br>
+             <br>         
+            <p>wins: <span id="wins"></span> </p>
+            <p>losses: <span id="losses"></span></p>
+            <p>guesses left: <span id="guesses"></span></p>
+            <p>letters guessed so far: <span id="guessed"></span></p>
+
+
+        </div>
 
     </div>
 
-    
-    <script src="assets/javascript/game.js"></script>
+    <!-- links javascript file -->
+   <script src="assets/javascript/game.js"></script>
 
 
     

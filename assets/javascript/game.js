@@ -5,49 +5,62 @@
         var alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
         var winCtr = 0;
         var lossCtr = 0;
+        var guessCtr = 10;
         var randomNum;            
         var target;
-        var missedGuesses;
+        var missedGuesses = [];
         var guessLtr;
-            
-        for (var m = 1; m < 100; m++) {
-                randomNum = Math.floor((Math.random()*26)+1);        
-                target = alphabet[randomNum];                                                
-                guessCtr = 10;
-                missedGuesses=[" "," "," "," "," "," "," "," "," "," "];       
-    
-            for (var i = 0; i < 10; i++) {
-                guessLtr = document.getElementById("userGuess");
-                document.onkeyup = function(event) {
-                     guessLtr.textContent = event.key;
-                }                
+
+        // function getCompGuess generates a random number and then uses that number as an index
+        // number to select an element from the alphabet array.
+
+        function getCompGuess() {
+        randomNum = Math.floor((Math.random()*26)+1);        
+        target = alphabet[randomNum];           
+        }
+
+            // the document.onkeyup event is a function that takes a keyboard stroke from a user and
+            // the performs all the game logic.
+
+            document.onkeyup = function(event) {
+                guessLtr = event.key;
+                    
+                // checks if the users guess is correct; if so, the "if" block fires 
+                // if the user's guess is incorrect, the else block fires
                 
                 if (guessLtr === target) {                    
-                    winCtr = winCtr + 1;
-                    i = 10;
+                    winCtr++;
+                    missedGuesses = [];
+                    getCompGuess();
+                    guessCtr = 10;                    
                 }
                 else {
-                    guessCtr = guessCtr - 1;
-                // add missed guess to array
-                    missedGuesses[i] = guessLtr;                             
+                    guessCtr--;               
+                    missedGuesses.push(guessLtr);                          
                 }
-            }
-                if (guessCtr = 0) {
-                    lossCtr = lossCtr + 1;                
+                
+                // if the user has exhausted 10 attempts without success (i.e., he loses), this if block fires 
+                if (guessCtr === 0) {
+                    lossCtr++;
+                    missedGuesses = [];
+                    guessCtr = 10;
+                    getCompGuess();                
                 }
 
-                var html =                
-                "<p>wins: " + winCtr + "</p>" +
-                "<p>losses: " + lossCtr + "</p>";
+                // the following takes the changes to various items and dynamically updates the screen
 
-                document.querySelector("#game").innerHTML = html;
+                document.querySelector("#wins").innerHTML = winCtr;
+                document.querySelector("#losses").innerHTML = lossCtr;
+                document.querySelector("#guesses").innerHTML = guessCtr;
+                document.querySelector("#guessed").innerHTML = missedGuesses; 
+              
                 
 
-                var play=confirm("Do you want to play again?");
-                if (play=false) {
-                    m=100;
-                }
-        }
+            }
+
+            // this function call initiates the game by firing the first function
+            
+            getCompGuess(); 
 
 
     
